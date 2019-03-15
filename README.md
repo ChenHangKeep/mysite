@@ -26,6 +26,7 @@
    并在Settings中添加：
    ```Python
     STATIC_URL = '/static/'
+    #  STATIC_ROOT = 'static'
     STATICFILES_DIRS = [
          os.path.join(BASE_DIR, 'static'), ##修改地方
       ]
