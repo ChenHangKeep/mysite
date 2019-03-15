@@ -14,3 +14,13 @@
   * 文章展示，按照文章标签分类展示，分页展示，文章详情阅读，展示文章和图片详情；
   * 搜索文章。全文搜索功能，列出匹配的文章列表；
   * 留言功能；
+  
+  # 注意事项
+  * 因为上传的项目是部署过之后的，所以静态文件加载方式不一样
+   * 在开发环境下：</br>
+   在urls.py注释掉下面两行:</br>
+   ```python
+   #   url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static'),
+   #   url(r'^media/(?P<path>.*)$', static.serve, {'document_root': settings.MEDIA_ROOT}, name='media'),
+   ```
+ 
