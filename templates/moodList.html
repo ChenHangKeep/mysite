@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block custom_bread %}
+    <ol class="breadcrumb w_breadcrumb">
+      <li><a href="{% url 'blog:index' %}">首页</a></li>
+      <li class="active">时间轴</li>
+      <span class="w_navbar_tip">时光飞逝，机会就在我们眼前，何时找到了灵感，就要把握机遇，我们需要智慧和勇气去把握机会。</span>
+    </ol>
+{% endblock %}
+
+{% block custom_left %}
+<div class="container">
+    <div class="timebox">
+        <ul id="list" style="list-style: none;">
+            {% for article in all_article.object_list %}
+                <li><span>{{ article.add_time|date:"Y-m-d" }}</span><a href="{% url 'blog:article_detail' article.id %}" title="{{ article.title }}">{{ article.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<ol class="breadcrumb w_breadcrumb bottombread">
+      <li><a href="#"></a></li>
+      <li class="active"></li>
+      <span class="w_navbar_tip"></span>
+</ol>
+    <div class="pageturn">
+            <ul class="pagelist">
+            {#  如果有，获取上一页 #}
+            {% if all_article.has_previous %}
+            <li class="long"><a href="?{{ all_article.previous_page_number.querystring }}"
+                                    class="page">上一页</a></li>
+            {% endif %}
+
+            {# 判断剩余页面的显示方法： #}
+            {% for page in all_article.pages %}
+
+                {% if page %}
+                    {% ifequal page all_article.number %}
+                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% endifequal %}
+                {% else %}
+                    <li class="none"><a href="">...</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {#  如果有，获取下一页 #}
+            {% if all_article.has_next %}
+                <li class="long"><a href="?{{ all_article.next_page_number.querystring }}">下一页</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+{% endblock %}
+

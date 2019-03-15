@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block custom_left %}
+<div class="col-lg-9 col-md-9 w_main_left">
+    <div class="panel panel-default">
+         <div class="panel-heading">
+            <h3 class="panel-title"><strong>标签</strong>:{{ cate.category_name }}</h3>
+
+        </div>
+        <div class="panel-body contentList">
+            {% for article in cate_article.object_list%}
+            <div class="panel panel-default w_article_item">
+              <div class="panel-body">
+                  <div class="row">
+                    <h4 class="media-heading">
+                        <a class="title" href="{% url 'article_detail' article.id %}">{{ article.title }}</a>
+                    </h4>
+                      <p><a class="label label-default">{{ article.category }}</a></p>
+                      <p class="w_list_overview overView">{{ article.brief }}</p>
+                      <p class="count_r"><span class="count"><i class="glyphicon glyphicon-user"></i><a href="#">{{ article.author }}</a></span> <span class="count"><i class="glyphicon glyphicon-eye-open"></i>阅读:{{ article.read_num }}</span><span class="count"><i class="glyphicon glyphicon-time"></i>{{ article.add_time }}</span></p>
+                    </div>
+                  </div>
+                </div>
+            {% endfor %}
+            <div class="pageturn">
+            <ul class="pagelist">
+            {#  如果有，获取上一页 #}
+            {% if cate_article.has_previous %}
+            <li class="long"><a href="?{{ cate_article.previous_page_number.querystring }}"
+                                    class="page">上一页</a></li>
+            {% endif %}
+
+            {# 判断剩余页面的显示方法： #}
+            {% for page in cate_article.pages %}
+
+                {% if page %}
+                    {% ifequal page cate_article.number %}
+                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% endifequal %}
+                {% else %}
+                    <li class="none"><a href="">...</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {#  如果有，获取下一页 #}
+            {% if cate_article.has_next %}
+                <li class="long"><a href="?{{ cate_article.next_page_number.querystring }}">下一页</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block custom_right %}
+    <div class="col-lg-3 col-md-3 w_main_right">
+
+						<div class="panel panel-default sitetip">
+							<a href="#">
+								<strong>站点公告</strong>
+								<h3 class="title">{{ all_notice.title }}</h3>
+								<p class="overView">{{ all_notice.content }}</p>
+							</a>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">热门标签</h3>
+							</div>
+							<div class="panel-body">
+								<div class="labelList">
+                                    {% for category in hot_category %}
+									<a href="{% url 'category' category.id %}" class="label label-default">{{ category.category_name }}({{ category.num_articles }})</a>
+                                    {% endfor %}
+								</div>
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">点击排行</h3>
+							</div>
+							<div class="panel-body">
+								<ul class="list-unstyled sidebar">
+                                    {% for article in read_article %}
+									<li>
+										<a href="{% url 'article_detail' article.id %}">{{ article.title }}</a>
+									</li>
+                                    {% endfor %}
+								</ul>
+							</div>
+						</div>
+
+                        <div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">站点信息</h3>
+							</div>
+							<div class="panel-body">
+								<ul class="list-unstyled sidebar">
+                                    <li><strong>建站时间</strong>：2019-3-1</li>
+                                    <li><strong>网站主题</strong>：IT技术文章分享</li>
+                                    <li><strong>文章统计</strong>：{{ article_num }}篇</li>
+                                    <li><strong>文章评论</strong>：共{{ comment_num }}个</li>
+								</ul>
+							</div>
+							<div class="panel-heading">
+								<h3 class="panel-title">关注微信公众号</h3>
+							</div>
+							<div class="panel-body">
+								<img src="{% static 'img/weixin.png' %}" style="height: 230.5px;width: 230.5px;" />
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">友情链接</h3>
+							</div>
+							<div class="panel-body">
+								<div class="newContent">
+									<ul class="list-unstyled sidebar shiplink">
+										<li>
+											<a href="https://www.baidu.com/" target="_blank">百度</a>
+										</li>
+										<li>
+											<a href="https://www.oschina.net/" target="_blank">开源中国</a>
+										</li>
+										<li>
+											<a href="http://www.ulewo.com/" target="_blank">有乐网</a>
+										</li>
+										<li>
+											<a href="http://www.sina.com.cn/" target="_blank">新浪网</a>
+										</li>
+										<li>
+											<a href="http://www.qq.com/" target="_blank">腾讯网</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+{% endblock %}

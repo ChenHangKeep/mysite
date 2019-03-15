@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block custom_bread %}
+<ol class="breadcrumb w_breadcrumb">
+				  <li><a href="#">首页</a></li>
+				  <li class="active">我&网站</li>
+				  <span class="w_navbar_tip">像“草根”一样，紧贴着地面，低调的存在，冬去春来，枯荣无恙。</span>
+				</ol>
+{% endblock %}
+
+{% block custom_left %}
+    <div class="panel-body">
+            <div class="contentList">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <p><a class="title" href="#"  style="font-size: 20px;">关于 Mr.Chen</a></p>
+                        <ul>
+                            <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>大家好，我是本站站主--Mr.Chen</p>
+                            </li>
+                             <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>本博客一是为了锻炼一下自己的能力</p>
+                            </li>
+                             <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>再就是为了有好的文章和好用的工具分享给大家</p>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="panel-body" style="margin-top: -50px;">
+            <div class="contentList">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <h4 class="title" href="#" style="font-size: 20px;">站点信息</h4>
+                    <ul>
+                            <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>本博客纯手工编写，木有使用第三方建站工具。前后端用到的东西都很基础，代码存放在<a style="color: #00a0e9" href="https://github.com/ChenHangKeep">github</a></p>
+                            </li>
+                             <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>前端使用CSS、JQuery、Bootstrapl</p>
+                            </li>
+                             <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>服务端语言使用Pyhon、框架使用Django</p>
+                            </li>
+                            <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>数据库使用MySQL</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="panel-body" style="margin-top: -50px;">
+            <div class="contentList">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <h4 class="title" href="#" style="font-size: 20px;">个人爱好</h4>
+                    <ul>
+                            <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>爱电影、爱音乐、爱编程、爱生活</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="panel-body" style="margin-top: -50px;">
+            <div class="contentList">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+
+                        <h4 class="title" href="#" style="font-size: 20px;">联系方式</h4>
+                    <ul>
+
+                        <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>QQ:596560557</p>
+                            </li>
+                        <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>GitHub:https://github.com/ChenHangKeep</p>
+                            </li>
+                        <li>
+                                <p style="font-size: 16px;"><i class="overView" style="color: rgb(73, 169, 238);"></i>微信：a596560557</p>
+                            </li>
+                        <img src="{% static 'img/winxin_01.png' %}" style="width: 300px;height: 300px">
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+

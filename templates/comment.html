@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block custom_bread %}
+    <ol class="breadcrumb w_breadcrumb">
+      <li><a href="{% url 'blog:index' %}">首页</a></li>
+      <li class="active">留言</li>
+    <span class="w_navbar_tip">你，生命中最重要的过客，之所以是过客，因为你未曾为我停留。</span>
+    </ol>
+{% endblock %}
+{% block custom_left %}
+<div class="col-lg-9 col-md-9 w_main_left">
+    <div class="panel panel-default">
+        <div class="panel-body contentList">
+            <div class="panel panel-default w_article_item">
+            {% for comment in all_comment.object_list %}
+            <div class="panel-body">
+                <h4><p class="title">{{ comment.comment_name}}</p></h4>
+                <p><span class="count"><i class="glyphicon glyphicon-time"></i>{{ comment.add_time }}</span></p>
+                <p class="overView">{{ comment.text }}</p>
+            </div>
+            {% endfor %}
+            </div>
+            <!--分页功能-->
+        <div class="pageturn">
+            <ul class="pagelist">
+{#              如果有，获取上一页#}
+            {% if all_comment.has_previous %}
+            <li class="long"><a href="?{{ all_comment.previous_page_number.querystring }}"
+                                    class="page">上一页</a></li>
+            {% endif %}
+
+{#             判断剩余页面的显示方法：#}
+            {% for page in all_comment.pages %}
+
+                {% if page %}
+                    {% ifequal page all_comment.number %}
+                        <li class="active"><a href="?{{ page.querystring }}">{{ page }}</a></li>
+                    {% else %}
+                        <li><a href="?{{ page.querystring }}" class="page">{{ page }}</a></li>
+                    {% endifequal %}
+                {% else %}
+                    <li class="none"><a href="">...</a></li>
+                {% endif %}
+            {% endfor %}
+
+{#              如果有，获取下一页#}
+            {% if all_comment.has_next %}
+                <li class="long"><a href="?{{ all_comment.next_page_number.querystring }}">下一页</a></li>
+            {% endif %}
+
+        </ul>
+    </div>
+            <!--分页功能结束-->
+
+          </div>
+        </div>
+
+        <!--添加评论模块-->
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">发布留言</h3>
+        </div>
+        <div class="panel-body contentList">
+            <form action="#" method="post" class="messages" id="jsStayForm">
+                    <div class="messlist">
+                        <label class="name">名字:  </label>
+                        <input name="comment_name" type="text" class="form-name" id="js-name" placeholder="请留下你名字">
+                    </div>
+                    <div class="messlist textareas">
+                        <label style="">评论:</label>
+                        <textarea name="text" class="form-control" id="js-content" rows="5" placeholder="你可以在这里留下建议和吐槽，但请不要超过300字；&#13&#10为防止恶意评论，你的评论将会在审核通过之后展示。"></textarea>
+                    </div>
+                    <div class="messsub">
+{#                        <p class="error company-tips" id="jsCompanyTips"></p>#}
+                        <button class="btn" type="button" id="jsStayBtn" value="发表" style="background:#00a3eb;color:#fff;">发表</button>
+                    </div><!-- row -->
+            </form>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block custom_right %}
+    <div class="col-lg-3 col-md-3 w_main_right">
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">点击排行</h3>
+							</div>
+							<div class="panel-body">
+								<ul class="list-unstyled sidebar">
+                                    {% for article in read_article %}
+									<li>
+										<a href="{% url 'blog:article_detail' article.id %}">{{ article.title }}</a>
+									</li>
+                                    {% endfor %}
+								</ul>
+							</div>
+						</div>
+
+                        <div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">站点信息</h3>
+							</div>
+							<div class="panel-body">
+								<ul class="list-unstyled sidebar">
+                                    <li><strong>建站时间</strong>：2019-3-1</li>
+                                    <li><strong>网站主题</strong>：IT技术文章分享</li>
+                                    <li><strong>文章统计</strong>：{{ article_num }}篇</li>
+                                    <li><strong>文章评论</strong>：共{{ comment_num }}个</li>
+								</ul>
+							</div>
+							<div class="panel-heading">
+								<h3 class="panel-title">关注微信公众号</h3>
+							</div>
+							<div class="panel-body">
+								<img src="{% static 'img/weixin.png' %}" style="height: 230.5px;width: 230.5px;" />
+							</div>
+						</div>
+
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">友情链接</h3>
+							</div>
+							<div class="panel-body">
+								<div class="newContent">
+									<ul class="list-unstyled sidebar shiplink">
+										<li>
+											<a href="https://www.baidu.com/" target="_blank">百度</a>
+										</li>
+										<li>
+											<a href="https://www.oschina.net/" target="_blank">开源中国</a>
+										</li>
+										<li>
+											<a href="http://www.ulewo.com/" target="_blank">有乐网</a>
+										</li>
+										<li>
+											<a href="http://www.sina.com.cn/" target="_blank">新浪网</a>
+										</li>
+										<li>
+											<a href="http://www.qq.com/" target="_blank">腾讯网</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+{% endblock %}
+{% block custom_js %}
+<script>
+    $(function(){
+        $('#jsStayBtn').on('click', function(){
+
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url:"{% url 'comments:add_comment' %}",
+                data:$('#jsStayForm').serialize(),
+                dateType:"json",
+                async: true,
+                beforeSend:function(xhr, settings){
+                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+            },
+                success: function(data) {
+                    if(data.status == 'success'){
+                        alert("提交成功");
+                         window.location.reload();//刷新当前页面.
+                    }else if(data.status == 'fail'){
+                        alert("评论错误，请重新评论");
+                    }
+                },
+            });
+        });
+    })
+
+</script>
+{% endblock %}
