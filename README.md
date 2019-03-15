@@ -20,8 +20,8 @@
    * 在开发环境下：</br>
    >>在urls.py注释掉下面两行:</br>
    ```Python
-  >>>  #   url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static'),
-  >>>  #   url(r'^media/(?P<path>.*)$', static.serve, {'document_root': settings.MEDIA_ROOT}, name='media'),
+    #   url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static'),
+    #   url(r'^media/(?P<path>.*)$', static.serve, {'document_root': settings.MEDIA_ROOT}, name='media'),
    ```
    并在Settings中添加：
    ```Python
