@@ -18,9 +18,16 @@
   # 注意事项
   * 因为上传的项目是部署过之后的，所以静态文件加载方式不一样
    * 在开发环境下：</br>
-   在urls.py注释掉下面两行:</br>
-   ```python
-   #   url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static'),
-   #   url(r'^media/(?P<path>.*)$', static.serve, {'document_root': settings.MEDIA_ROOT}, name='media'),
+   >>在urls.py注释掉下面两行:</br>
+   ```Python
+  >>>  #   url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT}, name='static'),
+  >>>  #   url(r'^media/(?P<path>.*)$', static.serve, {'document_root': settings.MEDIA_ROOT}, name='media'),
    ```
- 
+   并在Settings中添加：
+   ```Python
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = [
+         os.path.join(BASE_DIR, 'static'), ##修改地方
+      ]
+   ```
+  
