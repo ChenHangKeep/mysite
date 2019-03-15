@@ -1,7 +1,16 @@
 # 基于Djano的一个个人博客
 ## 项目介绍
-* 一个基于Python+Django框架的个人博客网站；
+* 一个基于Python+Django框架的个人博客网站，使用nginx_uwsgi部署到本地服务器；
+
 ## 项目环境
-* Python3.6
-* Django1.11
-* 第三方库：pip install requirements.txt
+  * Python3.6
+  * Django1.11
+  * 第三方库：pip install requirements.txt
+  * nginx+uwsgi
+
+## 相关功能：
+  * admin管理 换成 xadmin，支持富文本编辑；
+  * 文章标签类别自定义，文章管理；
+  * 文章展示，按照文章标签分类展示，分页展示，文章详情阅读，展示文章和图片详情；
+  * 搜索文章。全文搜索功能，列出匹配的文章列表；
+  * 留言功能；
