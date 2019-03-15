@@ -4,3 +4,4 @@
 ## 项目环境
 * Python3.6
 * Django1.11
+* 第三方库：pip install requirements.txt
