@@ -1,6 +1,7 @@
 # 基于Djano的个人博客
 ## 项目介绍
-* 一个基于Python+Django框架的个人博客网站，使用nginx_uwsgi部署到本地服务器；
+* 一个基于Python+Django框架的个人博客网站，已经通过阿里云部署上线；
+* 网址：www.xchenhang.com
 
 ## 项目环境
   * Python3.6
