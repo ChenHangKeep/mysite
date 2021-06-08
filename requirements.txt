@@ -21,7 +21,7 @@ jieba==0.39
 mysqlclient==1.4.2.post1
 odfpy==1.4.0
 openpyxl==2.6.1
-Pillow==5.4.1
+Pillow==8.2.0
 pytz==2018.9
 PyYAML==3.13
 requests==2.21.0
